@@ -1,0 +1,94 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet">
+    <title>KPI</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+
+    
+    {% include 'navbar.html' %}
+    
+    
+
+    <div class="container-fluid" >
+         
+
+        <h1>Table to Google Sheet KPI <i class="ri-arrow-right-line"></i><a href="reminder">Remind!</a></h1>
+        <table class="table table-bordered" >
+            <thead class="thead-dark">
+                <tr>
+                    <th>F.I.O</th>
+                    <th>
+                        <a href="{% url 'all_books' %}">Kitob</a>
+                    </th>
+                    <th>
+                        <a href="{% url 'all_sports' %}">Sport</a>
+                    </th>
+                    <th>
+                        <a href="{% url 'all_works' %}">Ish</a>
+                    </th>
+                    <th>
+                        <a href="{% url 'all_evrika' %}">Eureka</a>
+                    </th>
+                    <th class="background-color:green;">Umumiy</th>
+                    <th>Liga</th>
+                    <th>Koef</th>
+                    <th>Book Comments</th>
+                    <th>Upwork</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in results  %}  
+                <tr>
+                    <td>{{ i.kpi.name }}</td>
+                    <td>
+                        <a href="{% url 'book_detail' i.kpi.id %}">{{ i.books }}</a>
+                    </td>
+                    <td>
+                        <a href="{% url 'sport_detail' i.kpi.id %}">{{ i.sports }}</a>
+                    </td>
+                    <td>
+                        <a href="{% url 'work_detail' i.kpi.id %}">{{ i.works }}</a>
+                    </td>
+                    <td>
+                        <a href="{% url 'evrika_detail' i.kpi.id %}">{{ i.evrikas }}</a>
+                    </td>
+                    <td>{{ i.kpi.general }}</td>
+                    <td>{{ i.kpi.league }}</td>   
+                    <td>{{ i.kpi.koef }}</td>
+                    <td>
+                        <a href="{{ i.kpi.book_comment }}">{{ i.kpi.book_comment }}</a>
+                    </td>
+                    <td>
+                        <a href="{{ i.kpi.upwork }}">{{ i.kpi.upwork }}</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="https://docs.google.com/spreadsheets/d/13aPcjyMXeHoDP3VeYuTcN4DlKeJEvOr_2t3qR4TV_3w/edit#gid=1208225701">
+            <button>Table to Kpi Google Sheet</button>
+        </a>
+        <button onclick="tableToGoogleSheet()">
+            Table to Excel
+        </button>
+        {% if request.user.is_staff %}
+        <a href="{% url 'kpi_detail' %}">
+            <button>Kpi Users</button>
+        </a>
+        {% endif %}
+
+    </div>
+    
+<script type="text/javascript" src="{% static 'js/table2excel.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/index.js' %}"></script>
+</body>
+</html>

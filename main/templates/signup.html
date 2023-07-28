@@ -1,0 +1,52 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet">
+    <title>SignUp</title>
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+</head>
+<body>
+    {% comment %} <img src="{% static 'img/background.png' %}" alt="home_img" class="background_img"> {% endcomment %}
+    <div class="container">
+        <div class="form-box">
+            <h1 id="title">Sign Up</h1>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="input-group">
+                    <div class="input-field" id="nameField">
+                        <i class="ri-user-fill"></i>
+                        <input type="text" placeholder="Name" name="username" id="username">
+                    </div>
+
+                    <div class="input-field">
+                        <i class="ri-mail-fill"></i>
+                        <input type="email" placeholder="Email" name="email" id="email">
+                    </div>
+
+                    <div class="input-field">
+                        <i class="ri-lock-fill"></i>
+                        <input type="password" placeholder="Password" name="password1" id="password1">
+                    </div>
+
+                    <div class="input-field">
+                        <i class="ri-lock-fill"></i>
+                        <input type="password" placeholder="Confirm Password" name="password2" id="password2">
+                    </div>
+                    <p>Lost password <a href="#">Click Here!</a></p>
+                </div>
+                <div class="btn-field">
+                    <button type="submit" id="signupBtn">Sign Up</button>
+                    <button type="button" id="signinBtn" class="disable">Sign in</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+
+</body>
+</html>
